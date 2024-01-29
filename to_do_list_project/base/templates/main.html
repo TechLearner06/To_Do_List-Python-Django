@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>To Do List</title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width,initial scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@1,6..12,200&display=swap" rel="stylesheet">
+<style>
+    body{
+        background-color:white;
+        font-family:'Nunito Sans', sans-serif;
+        padding-top:50px;
+
+    }
+
+    h1,h2,h3,h4,h5,h6{
+        font-family:sans-serif;
+        color:white;
+    }
+
+    a,p{
+        text-decoration:none;
+        color:white
+        
+
+    }
+
+    .container{
+        max-width:550px;
+        margin:auto;
+        background:linear-gradient(to right, lightcoral,skyblue);
+        padding:10px;
+    }
+
+    .header-bar{
+        display:flex;
+        justify-content:space-between;
+        color:white;
+        padding:10px;
+        border-radius:5px 5px 0 0;
+        background:linear-gradient(to left bottom, crimson, lightcoral);
+    }
+
+
+    .task-wrapper{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:20px;
+        border-top:1px solid white;
+    }
+
+    .task-title{
+        text-decoration:none;
+        color:white;
+        margin-left:10px;
+    }
+
+    .delete-link{
+        font-weight:900;
+        color:red;
+        font-size:22px;
+        line-height:0;
+    }
+
+    #search-add-wrapper{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:10px;
+    }
+
+    .add-link{
+        background:linear-gradient(to left bottom, crimson, lightcoral);
+        height:40px;
+        width:40px;
+        border-radius:5px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:35px;
+
+    }
+
+    input[type=text],input[type=password],textarea{
+        border:1px solid lightcoral;
+        border-radius:5px;
+        padding:10px;
+        width:90%;
+    }
+
+    label{
+        padding-top:10px !important;
+        display:block;
+    }
+
+    .button{
+        border:1px solid lightcoral;
+        background-color:crimson;
+        color:white;
+        font-size:14px;
+        border-radius:5px;
+        cursor:pointer;
+        margin-left:10px;
+       
+    }
+
+    
+</style>
+</head>
+
+<body>
+    <div class="container">
+        {%block content%}
+
+
+        {% endblock %}
+    
+</body>
+</html>
