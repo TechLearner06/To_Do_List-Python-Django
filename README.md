@@ -10,3 +10,6 @@ User Authentication:Secure login and registration system for user accounts.
 Task Management:CRUD operations (Create, Read, Update, Delete) for efficient task management.
 
 Class-Based Views:Utilization of Django's Class-Based Views to streamline task-related operations.
+
+Disclaimer
+This project is solely created for the purpose of learning and skill enhancement in web development. It is not intended for production use or deployment. Any attempt to use this project in a real-world environment is strongly discouraged.
