@@ -1,8 +1,9 @@
 {% extends 'main.html' %}
 {%block content%}
 <div class="header-bar">
-<a href="{% url 'tasks' %}">&#8592; Go back</a>
+   <a href="{% url 'tasks' %}">&#8592; Go back</a>
 </div>
+<hr>
 
 <form method="POST">
     {% csrf_token%}
