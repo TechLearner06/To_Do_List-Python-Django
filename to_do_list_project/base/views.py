@@ -22,7 +22,7 @@ class CustomLoginView(LoginView):
         return reverse_lazy('tasks')
     
 
-class Registerpage(FormView):
+class RegisterPage(FormView):
     template_name='register.html'
     form_class=UserCreationForm
     redirect_authenticated_user= 'True'
@@ -41,7 +41,7 @@ class Registerpage(FormView):
     def get(self, *args,**kwargs):
         if self.request.user.is_authenticated:
             return redirect('tasks')
-        return super(Registerpage,self).get(*args,**kwargs)
+        return super(RegisterPage,self).get(*args,**kwargs)
 
 class TaskList(LoginRequiredMixin,ListView):
     model= Task
