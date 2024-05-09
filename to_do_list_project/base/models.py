@@ -6,7 +6,7 @@ class Task(models.Model):
     #attributes
     user= models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True) #when the user click delete the value will be deleted from the database too.
     title= models.CharField(max_length=200)
-    description=models.TextField(max_length=200)
+    description=models.TextField(null=True)
     complete=models.BooleanField(default=False)
     create=models.DateTimeField(auto_now_add=True)
 
