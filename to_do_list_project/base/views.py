@@ -3,45 +3,56 @@ from django.shortcuts import render,redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
 from .models import Task
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate , login 
+from django.contrib import messages
 
 
 # Create your views here.
 
-class CustomLoginView(LoginView):
-    template_name='login.html'
-    fields='__all__'
-    redirect_authenticated_user='True'
+def Login(request):
+    if request.method == 'POST':
+        username=request.POST['user_name']
+        password=request.POST['password']
 
-    def get_success_url(self):
-        return reverse_lazy('tasks')
+        user=authenticate(username=username,password=password)
+
+        if user is not None:
+            login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request,'invalid credentials')
+            return redirect('login')
+
+    else:
+        return render(request, 'login.html')
     
 
-class RegisterPage(FormView):
-    template_name='register.html'
-    form_class=UserCreationForm
-    redirect_authenticated_user= 'True'
-    success_url = reverse_lazy('tasks')
+def Register(request):
+    if request.method == 'POST':
+        username=request.POST['user_name']
+        email=request.POST['email']
+        password=request.POST['password']
+        password2=request.POST['password2']
 
-    def form_valid(self, form):
-        user=form.save()
-        try:
-            if user is not None:
-                login(self.request,user)
-        except Exception as e:
-            print(f"Error saving user: {e}")
-        return super(Registerpage,self).form_valid(form)
-
-    
-    def get(self, *args,**kwargs):
-        if self.request.user.is_authenticated:
-            return redirect('tasks')
-        return super(RegisterPage,self).get(*args,**kwargs)
+        if password==password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request,'username already taken')
+            elif User.objects.filter(email=email).exists():
+                messages.info(request,'email exist')
+            else:
+                user=User.objects.create_user(username=username,password=password,email=email)
+                user.save()
+                messages.info(request,'registered successfully')
+                return redirect('login')
+        else:
+            messages.info(request,'password did not match')
+        return redirect('register')
+    else:
+        return render(request,'register.html')
 
 class TaskList(LoginRequiredMixin,ListView):
     model= Task

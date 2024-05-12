@@ -6,8 +6,28 @@
 <hr>
 <form method="POST" class="register-form">
     {% csrf_token%}
-    {{form.as_p}}
+    <div class="fields">            
+        <label>User Name</label>
+        <input type="text" name="user_name" placeholder="User Name" required="">
+    </div>
+    <div class="fields">
+        <label>E Mail</label>
+        <input type="text" name="email" placeholder="Enter your email" required="">
+    </div>
+    <div class="fields">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Set password" required="">
+    </div>
+    <div class="fields">
+        <label>Confirm Password</label>
+        <input type="password" name="password2" placeholder="Confirm password" required="">
+    </div>
     <input class="button" type="submit" value="Register">
+    <div class="error">
+        {% for message in messages %}
+        <h4>{{message}}</h4>
+        {%endfor%}
+    </div>
     <p>Already have an Account?</p><a href="{% url 'login' %}">Login Here</a>
 </form>
 

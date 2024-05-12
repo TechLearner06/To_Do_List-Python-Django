@@ -6,12 +6,26 @@
 <hr>
 <form method="POST" class="login-form">
     {% csrf_token%}
-    {{form.as_p}}
+    <div class="fields">
+        <label>User Name</label>
+        <input type="text" name="user_name" placeholder="Enter your user name" required="">
+    </div>
+    <div class="fields">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required="">
+    </div>
     <div class="login-btn">
         <input class="button" type="submit" value="Login">
     </div>
+    <div class="error">
+        {% for message in messages%}
+           <h4>{{message}}</h4>
+        {%endfor%}
+    </div>
     <p>Don't Have an Account?</p><a href="{% url 'register' %}">Register</a>
 </form>
+
+
 
 
 
